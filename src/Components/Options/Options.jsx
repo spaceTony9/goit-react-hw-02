@@ -1,13 +1,10 @@
-export default function Options({
-  feedback,
-  updateFeedBack,
-  totalFeedback,
-  resetFeedback,
-}) {
+import css from './Options.module.css';
+
+export default function Options({ feedback, updateFeedBack, resetFeedback }) {
   const feedbackValues = Object.keys(feedback);
 
   return (
-    <div>
+    <div className={css.container}>
       <button onClick={() => updateFeedBack(feedbackValues[0])}>
         {feedbackValues[0]}
       </button>

@@ -1,7 +1,5 @@
 export default function Feedback({
   feedback,
-  totalFeedback,
-  totalFeedbackPersent,
 }) {
   const { total, positive } = feedback;
   return (
