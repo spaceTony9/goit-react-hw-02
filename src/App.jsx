@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { Feedback, Options, Description } from './Components/Index.jsx';
+import { Feedback, Options, Description } from './components/Index.jsx';
 
 export default function App() {
   const feedbackEmpty = {
