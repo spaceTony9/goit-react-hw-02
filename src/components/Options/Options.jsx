@@ -1,6 +1,11 @@
 import css from './Options.module.css';
 
-export default function Options({ feedback, updateFeedBack, resetFeedback }) {
+export default function Options({
+  feedback,
+  updateFeedBack,
+  resetFeedback,
+  totalFeedback,
+}) {
   const feedbackValues = Object.keys(feedback);
 
   return (
@@ -14,7 +19,7 @@ export default function Options({ feedback, updateFeedBack, resetFeedback }) {
       <button onClick={() => updateFeedBack(feedbackValues[2])}>
         {feedbackValues[2]}
       </button>
-      {feedback.total ? <button onClick={resetFeedback}>Reset</button> : ''}
+      {totalFeedback ? <button onClick={resetFeedback}>Reset</button> : ''}
     </div>
   );
 }

@@ -1,6 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
-import { Feedback, Options, Description } from './components/Index.jsx';
+import {
+  Feedback,
+  Options,
+  Description,
+  Notification,
+} from './components/Index.jsx';
 
 export default function App() {
   const feedbackEmpty = {
@@ -15,6 +20,10 @@ export default function App() {
     }
     return feedbackEmpty;
   });
+  const totalFeedback = feedback.good + feedback.bad + feedback.neutral;
+  const positiveFeedbackPercent = Math.round(
+    (feedback.good / totalFeedback) * 100
+  );
 
   useEffect(() => {
     window.localStorage.setItem('feedback', JSON.stringify(feedback));
@@ -22,20 +31,9 @@ export default function App() {
 
   function updateFeedback(feedbackType) {
     setFeedback(prevFeedback => {
-      const updatedFeedback = {
+      return {
         ...prevFeedback,
         [feedbackType]: prevFeedback[feedbackType] + 1,
-      };
-
-      const totalFeedback =
-        updatedFeedback.good + updatedFeedback.bad + updatedFeedback.neutral;
-      const positivePercent = Math.round(
-        (updatedFeedback.good / totalFeedback) * 100
-      );
-      return {
-        ...updatedFeedback,
-        total: totalFeedback,
-        positive: positivePercent,
       };
     });
   }
@@ -50,14 +48,19 @@ export default function App() {
       <Options
         updateFeedBack={updateFeedback}
         feedback={feedback}
-        // totalFeedback={totalFeedback}
         resetFeedback={resetFeedback}
+        totalFeedback={totalFeedback}
       />
-      <Feedback
-        feedback={feedback}
-        // totalFeedback={totalFeedback}
-        // totalFeedbackPersent={positivePersent}
-      />
+      {totalFeedback ? (
+        <Feedback
+          feedback={feedback}
+          totalFeedback={totalFeedback}
+          positiveFeedbackPercent={positiveFeedbackPercent}
+        />
+      ) : (
+        <Notification />
+      )}
+      {/*<Feedback feedback={feedback} />*/}
     </div>
   );
 }

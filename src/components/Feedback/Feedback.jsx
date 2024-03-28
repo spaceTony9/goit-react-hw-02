@@ -1,27 +1,18 @@
 export default function Feedback({
   feedback,
+  totalFeedback,
+  positiveFeedbackPercent,
 }) {
-  const { total, positive } = feedback;
   return (
     <div>
       <ul>
-        {total ? (
-          <>
-            {Object.entries(feedback).map(([key, value], index) =>
-              index < 3 ? (
-                <li key={index}>
-                  {key} : {value}
-                </li>
-              ) : (
-                ''
-              )
-            )}
-            <p>Total: {total}</p>
-            <p>Positive: {positive}%</p>
-          </>
-        ) : (
-          <p>No feedback yet</p>
-        )}
+        {Object.entries(feedback).map(([key, value], index) => (
+          <li key={index}>
+            {key} : {value}
+          </li>
+        ))}
+        <p>Total: {totalFeedback}</p>
+        <p>Positive: {positiveFeedbackPercent}%</p>
       </ul>
     </div>
   );
