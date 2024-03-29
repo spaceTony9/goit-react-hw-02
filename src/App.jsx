@@ -60,7 +60,6 @@ export default function App() {
       ) : (
         <Notification />
       )}
-      {/*<Feedback feedback={feedback} />*/}
     </div>
   );
 }
